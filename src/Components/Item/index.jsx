@@ -11,7 +11,7 @@ function Item({ item, toggleComplete, deleteItem }) {
             Pending
           </Badge>
           <CloseButton id='taskCloseButton' onClick={() => deleteItem(item.id)} />
-          <span id='itemAssignee'>{item.assignee}
+          <span id='itemAssignee'>Assigned to: {item.assignee}
           </span>
           <hr />
         </Card.Section>

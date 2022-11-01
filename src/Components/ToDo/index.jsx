@@ -6,7 +6,7 @@ import { SettingsContext } from '../../Context/Settings';
 import TodoItem from '../Item';
 import Form from '../ItemForm';
 import Header from '../Header';
-import './style.scss'
+import './styles.scss'
 
 const ToDoList = () => {
 

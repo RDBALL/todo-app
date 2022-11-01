@@ -1,6 +1,6 @@
 import useForm from '../../hooks/form';
 import { Box, Button } from '@mantine/core';
-import './style.scss';
+import './styles.scss';
 import { v4 as uuid } from 'uuid';
 
 function Form({ addToList }) {

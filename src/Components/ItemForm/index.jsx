@@ -7,6 +7,8 @@ function Form({ addToList }) {
 
   const defaultValues = {
     difficulty: 4,
+    text: 'text',
+    assignee: 'assignee'
   }
 
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);

@@ -7,7 +7,7 @@ function Item({ item, toggleComplete, deleteItem }) {
     <Card id='todoItemList' shadow="sm" p="lg" radius="md" withBorder>
       <span>
         <Card.Section >
-          <Badge color="green" variant="solid">
+          <Badge onClick={() => toggleComplete(item.id)} label="Complete" color="green" variant="solid">
             Pending
           </Badge>
           <CloseButton id='taskCloseButton' onClick={() => deleteItem(item.id)} />
@@ -19,13 +19,12 @@ function Item({ item, toggleComplete, deleteItem }) {
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{item.text}</Text>
       </Group>
-      <span>
-        <p id='difficultyText'>
+      <span id='difficultyText'>
           <Checkbox onClick={() => toggleComplete(item.id)} label="Complete" />
           <small>
             Difficulty: {item.difficulty}
           </small>
-        </p>
+
       </span>
     </Card>
   )

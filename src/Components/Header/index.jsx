@@ -1,12 +1,18 @@
 import React from 'react';
+import { Navbar, Header} from '@mantine/core';
 import './styles.scss'
 
-function Header({ incomplete }) {
+function appHeader({ incomplete }) {
   return (
-    <div>
+    <Header>
+      <Navbar fixed={false} position={{ top: 0, left: 0 }}>
+      This is a Navbar
+      </Navbar>
+      <div>
         <h1 id='headerH1'>To Do List: {incomplete} items pending</h1>
-    </div>
+      </div>
+    </Header>
   )
 }
 
-export default Header;
+export default appHeader;

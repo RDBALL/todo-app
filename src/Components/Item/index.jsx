@@ -4,7 +4,7 @@ import './styles.scss'
 
 function Item({ item, toggleComplete, deleteItem }) {
   return (
-    <Card id='todoItemList' shadow="sm" p="lg" radius="md" withBorder>
+    <Card id='todoItemList' shadow="sm" p="lg" radius="md" >
       <span>
         <Card.Section >
           <Badge onClick={() => toggleComplete(item.id)} label="Complete" color="green" variant="solid">
@@ -24,7 +24,6 @@ function Item({ item, toggleComplete, deleteItem }) {
           <small>
             Difficulty: {item.difficulty}
           </small>
-
       </span>
     </Card>
   )

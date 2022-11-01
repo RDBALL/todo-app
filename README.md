@@ -74,6 +74,7 @@ Requirements:
     "web-vitals": "^2.1.4"
 }
 ```
+
 ---
 
 ### Setup

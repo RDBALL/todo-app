@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Text, Badge, CloseButton, Group } from '@mantine/core';
-import './styles.scss'
+import './style.scss'
 
 function Item({ item, toggleComplete, deleteItem }) {
   return (

@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 function Form({ addToList }) {
 
   const defaultValues = {
-    difficulty: 1,
+    difficulty: 4,
   }
 
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);

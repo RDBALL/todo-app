@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Text, Badge, CloseButton, Group } from '@mantine/core';
+import { Card, Text, Badge, CloseButton, Group, Checkbox } from '@mantine/core';
 import './styles.scss'
 
 function Item({ item, toggleComplete, deleteItem }) {
@@ -19,7 +19,14 @@ function Item({ item, toggleComplete, deleteItem }) {
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{item.text}</Text>
       </Group>
-      <p id='difficultyText'><small>Difficulty: {item.difficulty}</small></p>
+      <span>
+        <p id='difficultyText'>
+          <Checkbox onClick={() => toggleComplete(item.id)} label="Complete" />
+          <small>
+            Difficulty: {item.difficulty}
+          </small>
+        </p>
+      </span>
     </Card>
   )
 }

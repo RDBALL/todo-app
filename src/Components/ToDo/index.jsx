@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { SettingsContext } from '../../Context/Settings';
 import TodoItem from '../Item';
 import Form from '../ItemForm';
-import  Header  from '../Header';
+import Header from '../Header';
 import './styles.scss'
 
 const ToDoList = () => {
@@ -60,31 +60,31 @@ const ToDoList = () => {
   let pageButtons = [];
   let pageQty = Math.ceil(sortedList.length / itemQty);
   for (let i = 1; i <= pageQty; i++) {
-    pageButtons[i] = <Button onClick={changePage} value={i} key={uuid()}>{i}</Button>
+    pageButtons[i] = <Button variant="outline" onClick={changePage} value={i} key={uuid()}>{i}</Button>
   }
 
   sortedList = sortedList.filter((item, idx) => idx < page * itemQty && idx >= (page - 1) * itemQty);
 
   return (
     <>
-      <Header />
+      <Header incomplete={incomplete} />
       <Grid>
-      <Menu>
-        <Form addToList={addToList} />
-      </Menu>
-      <div >
-        {sortedList.map(item => (
-          <TodoItem
-          key={item.id}
-          toggleComplete={toggleComplete}
-          item={item}
-          deleteItem={deleteItem}
-          />
-        ))}
+        <Menu>
+          <Form addToList={addToList} />
+        </Menu>
+        <div >
+          {sortedList.map(item => (
+            <TodoItem
+              key={item.id}
+              toggleComplete={toggleComplete}
+              item={item}
+              deleteItem={deleteItem}
+            />
+          ))}
           <Group id='pageButtons'>
             {pageButtons}
           </Group>
-      </div>
+        </div>
       </Grid>
     </>
   );

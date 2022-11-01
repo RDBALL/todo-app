@@ -1,15 +1,25 @@
 import React from 'react';
-import { Card, Button} from '@mantine/core';
+import { Card, Text, Badge, CloseButton, Button, Group } from '@mantine/core';
+import './styles.scss'
 
-function Item({item, toggleComplete, deleteItem }) {
+function Item({ item, toggleComplete, deleteItem }) {
   return (
-    <Card>
-        <p>{item.text}</p>
-        <p><small>Assigned to: {item.assignee}</small></p>
-        <p><small>Difficulty: {item.difficulty}</small></p>
-        <Button onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</Button>
-        <Button onClick={() => deleteItem(item.id)}>Delete Item</Button>
-        <hr />
+    <Card id='todoItemList' shadow="sm" p="lg" radius="md" withBorder>
+      <span>
+        <Card.Section >
+          <Badge color="green" variant="solid">
+            Pending
+          </Badge>
+          <CloseButton id='taskCloseButton' onClick={() => deleteItem(item.id)} />
+          <span id='itemAssignee'>{item.assignee}
+          </span>
+          <hr />
+        </Card.Section>
+      </span>
+      <Group position="apart" mt="md" mb="xs">
+        <Text weight={500}>{item.text}</Text>
+      </Group>
+      <p id='difficultyText'><small>Difficulty: {item.difficulty}</small></p>
     </Card>
   )
 }

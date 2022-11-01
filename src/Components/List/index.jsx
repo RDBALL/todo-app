@@ -33,7 +33,6 @@ const List = ({list, toggleComplete}) => {
         <hr />
       </div>
     ))}
-
     {page >= 1 && <button onClick={handlePrevious}>previous</button>}
     {
       pages.length > 1 && pages.map((n, index) => (

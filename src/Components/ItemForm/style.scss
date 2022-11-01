@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+#formBox {
+  max-width: 200px;
+  padding: 2rem;
+  line-height: 2rem;
+  border-color: black;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+form {
+  font-family: 'Roboto', sans-serif;
+}
+
+input {
+  padding: .5rem;
+  border-radius: 5px;
+}

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Menu, Button, Group } from '@mantine/core';
+import { Menu, Button, Group, Grid } from '@mantine/core';
 import { v4 as uuid } from 'uuid';
 
 import { SettingsContext } from '../../Context/Settings';
 import TodoItem from '../Item';
 import Form from '../ItemForm';
+import  Header  from '../Header';
+import './styles.scss'
 
 const ToDoList = () => {
 
@@ -65,25 +67,25 @@ const ToDoList = () => {
 
   return (
     <>
-      <header>
-        <h1>To Do List: {incomplete} items pending</h1>
-      </header>
+      <Header />
+      <Grid>
       <Menu>
         <Form addToList={addToList} />
-        <Group>
-          {pageButtons}
-        </Group>
       </Menu>
-      <div>
+      <div >
         {sortedList.map(item => (
           <TodoItem
-            key={item.id}
-            toggleComplete={toggleComplete}
-            item={item}
-            deleteItem={deleteItem}
+          key={item.id}
+          toggleComplete={toggleComplete}
+          item={item}
+          deleteItem={deleteItem}
           />
         ))}
+          <Group id='pageButtons'>
+            {pageButtons}
+          </Group>
       </div>
+      </Grid>
     </>
   );
 };

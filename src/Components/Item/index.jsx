@@ -1,12 +1,16 @@
 import React from "react";
-import { Card, Text, Badge, CloseButton, Group, Checkbox } from "@mantine/core";
+import { Card, Text, Badge, CloseButton, Group } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
 import "./styles.scss";
 
 function Item({ item, toggleComplete, deleteItem }) {
   const [value, toggle] = useToggle();
 
-  let badgeColor = "blue";
+  const onClick = () => {
+    toggleComplete(item.id);
+    toggle();
+  }
+  let badgeColor = "green";
 
   return (
     <Card id="todoItemList" shadow="sm" p="lg" radius="md">
@@ -14,13 +18,13 @@ function Item({ item, toggleComplete, deleteItem }) {
         <Card.Section>
           <Badge 
             className={'badgeToggleComplete'+ (value ? 'badgeTogglePending':'')}
-            onClick={() => toggle()}
+            onClick={() => onClick()}
             label="Complete"
             color={badgeColor}
-            variant="solid"
+            variant="filled"
             text="Text"
           >
-            {value ? 'pending': 'complete'}
+            {!value ? 'pending': 'complete'}
           </Badge>
           <CloseButton
             id="taskCloseButton"
@@ -33,10 +37,6 @@ function Item({ item, toggleComplete, deleteItem }) {
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{item.text}</Text>
       </Group>
-      <span id="difficultyText">
-        <Checkbox onClick={() => toggleComplete(item.id)} label="Complete" />
-        <small>Difficulty: {item.difficulty}</small>
-      </span>
     </Card>
   );
 }

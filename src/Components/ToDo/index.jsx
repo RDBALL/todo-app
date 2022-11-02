@@ -1,22 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Menu, Button, Group, Grid } from '@mantine/core';
-import { v4 as uuid } from 'uuid';
+import React, { useContext, useEffect, useState } from "react";
+import { Menu, Button, Group, Grid } from "@mantine/core";
+import { v4 as uuid } from "uuid";
 
-import { SettingsContext } from '../../Context/Settings';
-import TodoItem from '../Item';
-import Form from '../ItemForm';
-import Header from '../Header';
-import './styles.scss'
+import { SettingsContext } from "../../Context/Settings";
+import TodoItem from "../Item";
+import Form from "../ItemForm";
+import "./styles.scss";
 
 const ToDoList = () => {
-
-  const { showCompleted, itemQty, sortParams } = useContext(SettingsContext)
+  const { showCompleted, itemQty, sortParams } = useContext(SettingsContext);
   const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([]);
   const [page, setPage] = useState(1);
 
   function deleteItem(id) {
-    const items = list.filter(item => item.id !== id);
+    const items = list.filter((item) => item.id !== id);
     setList(items);
   }
 
@@ -25,8 +23,7 @@ const ToDoList = () => {
   }
 
   function toggleComplete(id) {
-
-    const items = list.map(item => {
+    const items = list.map((item) => {
       if (item.id === id) {
         item.complete = !item.complete;
       }
@@ -34,7 +31,6 @@ const ToDoList = () => {
     });
 
     setList(items);
-
   }
 
   function changePage(e) {
@@ -43,14 +39,14 @@ const ToDoList = () => {
   }
 
   useEffect(() => {
-    let incompleteCount = list.filter(item => !item.complete).length;
+    let incompleteCount = list.filter((item) => !item.complete).length;
     setIncomplete(incompleteCount);
     document.title = `To Do List: ${incomplete}`;
   }, [list, incomplete]);
 
   let sortedList = [...list];
   if (!showCompleted) {
-    sortedList = sortedList.filter((item) => !item.complete)
+    sortedList = sortedList.filter((item) => !item.complete);
   }
 
   sortedList = sortedList.filter((item) => {
@@ -60,16 +56,22 @@ const ToDoList = () => {
   let pageButtons = [];
   let pageQty = Math.ceil(sortedList.length / itemQty);
   for (let i = 1; i <= pageQty; i++) {
-    pageButtons[i] = <Button variant="outline" onClick={changePage} value={i} key={uuid()}>{i}</Button>
+    pageButtons[i] = (
+      <Button variant="outline" onClick={changePage} value={i} key={uuid()}>
+        {i}
+      </Button>
+    );
   }
 
-  sortedList = sortedList.filter((item, idx) => idx < page * itemQty && idx >= (page - 1) * itemQty);
+  sortedList = sortedList.filter(
+    (item, idx) => idx < page * itemQty && idx >= (page - 1) * itemQty
+  );
 
   return (
     <>
-      <Header incomplete={incomplete} />
-      <h1 id='headerH1' data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-
+      <h1 id="headerH1" data-testid="todo-h1">
+        To Do List: {incomplete} items pending
+      </h1>
       <Grid grow gutter="xl">
         <Grid.Col span={1}>
           <Menu>
@@ -77,8 +79,8 @@ const ToDoList = () => {
           </Menu>
         </Grid.Col>
         <Grid.Col span={6}>
-          <div >
-            {sortedList.map(item => (
+          <div>
+            {sortedList.map((item) => (
               <TodoItem
                 key={item.id}
                 toggleComplete={toggleComplete}
@@ -86,9 +88,7 @@ const ToDoList = () => {
                 deleteItem={deleteItem}
               />
             ))}
-            <Group id='pageButtons'>
-              {pageButtons}
-            </Group>
+            <Group id="pageButtons">{pageButtons}</Group>
           </div>
         </Grid.Col>
       </Grid>

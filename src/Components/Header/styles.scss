@@ -3,6 +3,7 @@
 #navBar {
   background-color: rgb(46, 118, 252);
   display: block;
+  height: 2rem;
 }
 
 #homeButton {
@@ -29,7 +30,7 @@
   color: white;
 
   &:hover {
-    background-color: rgba($color: #ffffff, $alpha: .1);
+    background-color: rgba($color: #a3a3a3, $alpha: .1);
   }
 
   &:active {
@@ -45,4 +46,8 @@
   max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+
+#currentRouterPage{
+  color: white;
 }

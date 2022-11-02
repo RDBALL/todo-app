@@ -40,7 +40,7 @@ function SettingsForm() {
         min={1}
         max={5}
         name="difficulty"
-        data-testid="difficulty-input"
+        initialvalue={itemQty}
       />
       <span>Items per page</span>
     </Box>

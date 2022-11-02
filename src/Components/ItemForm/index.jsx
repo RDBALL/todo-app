@@ -1,13 +1,14 @@
-import useForm from '../../hooks/form';
-import { Box, Button } from '@mantine/core';
-import './styles.scss';
-import { v4 as uuid } from 'uuid';
+import useForm from "../../hooks/form";
+import { Box, Button } from "@mantine/core";
+import "./styles.scss";
+import { v4 as uuid } from "uuid";
 
 function Form({ addToList }) {
-
   const defaultValues = {
-    difficulty: 1,
-  }
+    difficulty: 4,
+    text: "text",
+    assignee: "assignee",
+  };
 
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
@@ -18,7 +19,7 @@ function Form({ addToList }) {
   }
 
   return (
-    <Box id='formBox'>
+    <Box id="formBox">
       <form onSubmit={handleSubmit}>
         <h2>Add To Do Item</h2>
 

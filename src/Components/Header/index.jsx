@@ -1,15 +1,25 @@
-import { Header, Navbar, Button } from '@mantine/core';
+import { Header, Navbar, Button} from '@mantine/core';
+import { useToggle } from '@mantine/hooks';
+import { useState } from 'react';
+import SettingsForm from '../ListSettings';
 import './styles.scss'
 
 const AppHeader = ({ incomplete }) => {
+  const [setShowForm] = useState(false);
+  const [showForm, toggle] = useToggle();
 
   return (
+    <>
     <Header data-testid="todo-header">
       <Navbar id='navBar'>
-        <Button id='homeButton'>Home</Button>
+        <Button id='homeButton' variant='subtle'>Home</Button>
+        <Button id='settingsButton' variant='subtle' onClick={() => toggle()}>Settings</Button>
       </Navbar>
-      <h1  id='headerH1' data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
     </Header>
+      {
+        showForm && <SettingsForm setShowForm={setShowForm} />
+      }
+      </>
   )
 }
 

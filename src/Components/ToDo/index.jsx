@@ -68,23 +68,29 @@ const ToDoList = () => {
   return (
     <>
       <Header incomplete={incomplete} />
-      <Grid>
-        <Menu>
-          <Form addToList={addToList} />
-        </Menu>
-        <div >
-          {sortedList.map(item => (
-            <TodoItem
-              key={item.id}
-              toggleComplete={toggleComplete}
-              item={item}
-              deleteItem={deleteItem}
-            />
-          ))}
-          <Group id='pageButtons'>
-            {pageButtons}
-          </Group>
-        </div>
+      <h1 id='headerH1' data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
+
+      <Grid grow gutter="xl">
+        <Grid.Col span={1}>
+          <Menu>
+            <Form addToList={addToList} />
+          </Menu>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <div >
+            {sortedList.map(item => (
+              <TodoItem
+                key={item.id}
+                toggleComplete={toggleComplete}
+                item={item}
+                deleteItem={deleteItem}
+              />
+            ))}
+            <Group id='pageButtons'>
+              {pageButtons}
+            </Group>
+          </div>
+        </Grid.Col>
       </Grid>
     </>
   );

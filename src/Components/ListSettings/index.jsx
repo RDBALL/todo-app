@@ -36,11 +36,11 @@ function SettingsForm() {
       />
       <input
         onChange={handleChange}
+        defaultValue={itemQty}
         type="range"
         min={1}
-        max={5}
-        name="difficulty"
-        initialvalue={itemQty}
+        max={10}
+        name="itemQty"
       />
       <span>Items per page</span>
     </Box>

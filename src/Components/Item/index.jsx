@@ -4,22 +4,23 @@ import { useToggle } from "@mantine/hooks";
 import "./styles.scss";
 
 function Item({ item, toggleComplete, deleteItem }) {
-  const [value, toggle] = useToggle(["pending", "complete"]);
+  const [value, toggle] = useToggle();
 
-  let badgeColor = "green";
+  let badgeColor = "blue";
 
   return (
     <Card id="todoItemList" shadow="sm" p="lg" radius="md">
       <span>
         <Card.Section>
-          <Badge
+          <Badge 
+            className={'badgeToggleComplete'+ (value ? 'badgeTogglePending':'')}
             onClick={() => toggle()}
             label="Complete"
             color={badgeColor}
             variant="solid"
             text="Text"
           >
-            {value}
+            {value ? 'pending': 'complete'}
           </Badge>
           <CloseButton
             id="taskCloseButton"

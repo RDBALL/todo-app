@@ -20,3 +20,17 @@
 #taskCloseButton {
   float: right;
 }
+
+.badgeTogglePending {
+  background-color: rgb(9, 190, 9);
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.badgeToggleComplete {
+  background-color: rgb(9, 190, 9);
+  &:hover{
+    cursor: pointer;
+  }
+}

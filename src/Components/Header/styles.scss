@@ -2,26 +2,12 @@
 
 #navBar {
   background-color: rgb(46, 118, 252);
-  display: block;
+  display: inline-block;
+  height: 5rem;
 }
 
-#homeButton {
-  max-width: 150px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  margin: .5rem;
-  color: white;
-
-  &:hover {
-    background-color: rgba($color: #ffffff, $alpha: .1);
-  }
-
-  &:active {
-    background-color: rgba($color: #ff0000, $alpha: .6);
-  }
-}
-
-#settingsButton {
+#reactRouterLinks {
+  text-decoration: none;
   max-width: 150px;
   font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
@@ -46,3 +32,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+#currentRouterPage{
+  color: white;
+}
+

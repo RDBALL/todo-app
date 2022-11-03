@@ -1,26 +1,22 @@
-import { Header, Navbar, Button } from "@mantine/core";
-import { useToggle } from "@mantine/hooks";
-import { useState } from "react";
-import SettingsForm from "../ListSettings";
+import { Header, Navbar } from "@mantine/core";
+import { NavLink } from "react-router-dom";
 import "./styles.scss";
+import Login from "../Login";
 
 const AppHeader = ({ incomplete }) => {
-  const [setShowForm] = useState(false);
-  const [showForm, toggle] = useToggle();
-
   return (
     <>
-      <Header data-testid="todo-header">
+      <Header incomplete={incomplete} data-testid="todo-header">
         <Navbar id="navBar">
-          <Button id="homeButton" variant="subtle">
+          <NavLink id="reactRouterLinks" to="/" >
             Home
-          </Button>
-          <Button id="settingsButton" variant="subtle" onClick={() => toggle()}>
+          </NavLink>
+          <NavLink id="reactRouterLinks" to="/settings" >
             Settings
-          </Button>
+          </NavLink>
+          <Login />
         </Navbar>
       </Header>
-      {showForm && <SettingsForm setShowForm={setShowForm} />}
     </>
   );
 };

@@ -8,20 +8,66 @@
 
 ---
 
-### Phase 2 live on [Netlify](https://stellar-cucurucho-483f62.netlify.app/)
+### Phase 3 live on [Netlify](https://stellar-cucurucho-483f62.netlify.app/)
 
 ### Phase 1 live on [codesandbox.io](https://codesandbox.io/p/github/RDBALL/todo-app/lab31?file=%2FREADME.md&workspace=%257B%2522activeFileId%2522%253A%2522cl9xp80ye0014lrgybp0p1vm8%2522%252C%2522openFiles%2522%253A%255B%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522sidekickItems%2522%253A%255B%257B%2522type%2522%253A%2522TERMINAL%2522%252C%2522shellId%2522%253A%2522cl9xp9l380006lpgy1di2g5ac%2522%252C%2522key%2522%253A%2522cl9xp9k9l00cb356hxjmotavn%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522key%2522%253A%2522cl9xp972z0097356h1rddal07%2522%252C%2522type%2522%253A%2522PROJECT_SETUP%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D)
 
 ---
 Documentation:
 
-![UML lab32](./public/assets/lab32UML.jpg)
+![UML lab32](./public/assets/lab33UML.jpg)
 
 ---
 
 ## Problem Domain
 
 * A Web Application for securely managing a To Do List
+
+---
+
+## Phase 3 - Requirements
+
+* In Phase 3, we’d like to extend the functionality of the application by requiring users be logged in to view items and also restrict access based on user type. The user stories from Phases 1, and 2 remain unchanged. For this phase, we are now adding the following new user stories.
+
+---
+Requirements:
+
+* As a user, I want to provide a way for other users to create new accounts
+* As a user, I want to provide a way for all users to login to their account
+* As a user, I want to make sure that my To Do items are only viewable to users that have logged in with a valid account.
+* As a user, I want to ensure that only fellow users that are allowed to “create”, based on their user type, can add new To Do Items
+* As a user, I want to ensure that only fellow users that are allowed to “update”, based on their user type, can mark To Do Items complete
+* As a user, I want to ensure that only fellow users that are allowed to “delete”, based on their user type, can delete new To Do Items
+
+### Rendering Phase 3 app results
+
+![Render Results Test](./public/assets/todoPhase3Render.jpg)
+
+---
+
+### API
+
+Enabled Logins:
+
+```JSON
+  {
+    "Admin": {
+    "password": "admin",
+    },
+    "Reader": {
+    "password": "reader",
+    "capabilities": ['read'],
+    },
+    "Writer": {
+    "password": "writer",
+    "capabilities": ['read', 'write'],
+    },
+    "Editor": {
+    "password": "editor",
+    "capabilities": ['read', 'write', 'update', 'delete'],
+    },
+  }
+```
 
 ---
 
@@ -48,7 +94,7 @@ Requirements:
 
 ---
 
-### Testing
+### Testing Phase 2
 
 * Testing was done using the the `@testing-library/react` and `@testing-library/jest-dom/extend-expect` testing libraries.
 
@@ -77,7 +123,7 @@ Requirements:
 
 ---
 
-### Testing
+### Testing Phase 1
 
 * Testing was done using the the `@testing-library/react` and `@testing-library/jest-dom/extend-expect` testing libraries.
 
@@ -89,7 +135,7 @@ Requirements:
 
 ```JSON
 {
-    "@emotion/react": "^11.10.5",
+  "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.6.3",
     "@mantine/form": "^5.6.3",
     "@mantine/hooks": "^5.6.3",
@@ -117,4 +163,5 @@ Requirements:
 
 Previous UMLs
 
+![UML lab32](./public/assets/lab32UML.jpg)
 ![UML lab31](./public/assets/lab31UML.jpg)

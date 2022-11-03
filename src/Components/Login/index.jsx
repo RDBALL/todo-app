@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/Auth';
 import { When } from 'react-if';
+import { Box } from '@mantine/core';
 
 function Login() {
 
@@ -21,6 +22,7 @@ function Login() {
   }
 
   return (
+    <Box id='loginComponent'>
     <div id="login-container">
       <When condition={isLoggedIn}>
         <button onClick={logout}>Logout</button>
@@ -45,6 +47,7 @@ function Login() {
         </form>
       </When>
     </div>
+    </Box>
   )
 }
 

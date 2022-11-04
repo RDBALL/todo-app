@@ -31,6 +31,7 @@ function Settings({ children }) {
   useEffect(() => {
     const settings = JSON.stringify({ showCompleted, itemQty, sortParams });
     localStorage.setItem('settings', settings);
+    console.log('settings', settings);
   }, [showCompleted, itemQty, sortParams]);
 
   const value = {

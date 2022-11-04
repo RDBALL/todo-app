@@ -17,7 +17,7 @@ function SettingsForm() {
     handleSortParams(e.target.value);
   }
 
-  function handleChange(value) {
+  function handleItemQtyChange(value) {
     handleItemQty(value);
   }
 
@@ -35,7 +35,7 @@ function SettingsForm() {
         data-testid="show-completed-checkbox"
       />
       <input
-        onChange={handleChange}
+        onChange={handleItemQtyChange}
         defaultValue={itemQty}
         type="range"
         min={1}

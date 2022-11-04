@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import cookie from 'react-cookies';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
+
 
 export const AuthContext = React.createContext();
 
@@ -12,13 +15,13 @@ function AuthProvider({ children }) {
   let [user, setUser] = useState({});
 
   const can = (capability) => {
-    return user?.capabilities?.includes(capability); 
+    return user?.capabilities?.includes(capability);
   }
 
   const login = async (username, password) => {
-    
+
     const config = {
-      baseURL: 'https://api-js401.herokuapp.com',
+      baseURL: `${REACT_APP_API_URL}`,
       url: '/signin',
       method: 'post',
       auth: {
@@ -28,12 +31,12 @@ function AuthProvider({ children }) {
     }
 
     const response = await axios(config);
-    const {token} = response.data
+    const { token } = response.data
 
     if (token) {
       try {
         _validateToken(token);
-      } catch (error){
+      } catch (error) {
         console.log(error);
       }
     }
@@ -62,7 +65,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     let token = cookie.load('auth');
-    if(token){
+    if (token) {
       _validateToken(token);
     }
   }, [])

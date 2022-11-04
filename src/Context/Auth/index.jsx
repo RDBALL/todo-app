@@ -1,53 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import cookie from 'react-cookies';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
+
 
 export const AuthContext = React.createContext();
 
-const testUsers = {
-  Admin: {
-    password: 'admin',
-    name: 'admin',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW5pc3RyYXRvciIsInJvbGUiOiJhZG1pbiIsImNhcGFiaWxpdGllcyI6IlsnY3JlYXRlJywncmVhZCcsJ3VwZGF0ZScsJ2RlbGV0ZSddIiwiaWF0IjoxNTE2MjM5MDIyfQ.pAZXAlTmC8fPELk2xHEaP1mUhR8egg9TH5rCyqZhZkQ'
-  },
-  Reader: {
-    password: 'reader',
-    name: 'reader',
-    capabilities: ['read'],
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmVhZGVyIiwiY2FwYWJpbGl0aWVzIjpbInJlYWQiXX0.8jtDua75M64EiablS8CJIaD4KV9rMzLFGaKXsbEybco'
-  },
-  Writer: {
-    password: 'writer',
-    name: 'writer',
-    capabilities: ['read', 'write'],
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiV3JpdGVPbmx5IiwiY2FwYWJpbGl0aWVzIjpbInJlYWQiLCJ3cml0ZSJdfQ.gGOiubOphgkdA8xJdEmgINV6hV530_gksx9PbXUKtGY'
-  },
-  Editor: {
-    password: 'editor',
-    name: 'editor',
-    capabilities: ['read', 'write', 'update', 'delete'],
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiV3JpdGVyIiwiY2FwYWJpbGl0aWVzIjpbInJlYWQiLCJ3cml0ZSIsInVwZGF0ZSIsImRlbGV0ZSJdfQ.jrb7yupzGaUIJcDX-CQs93zEl6czjdOZyoHFcqiYpuk'
-  },
-}
-
 function AuthProvider({ children }) {
 
+  let [error, setError] = useState(null);
   let [isLoggedIn, setIsLoggedIn] = useState(false);
   let [user, setUser] = useState({});
-  let [error, setError] = useState(null);
 
   const can = (capability) => {
     return user?.capabilities?.includes(capability);
   }
 
   const login = async (username, password) => {
-    let authCreds = testUsers[username];
 
-    if (authCreds && authCreds.password === password) {
+    const config = {
+      baseURL: `${REACT_APP_API_URL}`,
+      url: '/signin',
+      method: 'post',
+      auth: {
+        username,
+        password,
+      }
+    }
+
+    const response = await axios(config);
+    const { token } = response.data
+
+    if (token) {
       try {
-        _validateToken(authCreds.token);
-      } catch (e) {
-        console.error(e);
+        _validateToken(token);
+      } catch (error) {
+        console.log(error);
       }
     }
   }
@@ -75,8 +65,9 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     let token = cookie.load('auth');
-
-    _validateToken(token);
+    if (token) {
+      _validateToken(token);
+    }
   }, [])
 
 

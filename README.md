@@ -8,20 +8,42 @@
 
 ---
 
-### Phase 3 live on [Netlify](https://stellar-cucurucho-483f62.netlify.app/)
+### Phase 4 live on [Netlify](https://stellar-cucurucho-483f62.netlify.app/)
 
 ### Phase 1 live on [codesandbox.io](https://codesandbox.io/p/github/RDBALL/todo-app/lab31?file=%2FREADME.md&workspace=%257B%2522activeFileId%2522%253A%2522cl9xp80ye0014lrgybp0p1vm8%2522%252C%2522openFiles%2522%253A%255B%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522sidekickItems%2522%253A%255B%257B%2522type%2522%253A%2522TERMINAL%2522%252C%2522shellId%2522%253A%2522cl9xp9l380006lpgy1di2g5ac%2522%252C%2522key%2522%253A%2522cl9xp9k9l00cb356hxjmotavn%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522key%2522%253A%2522cl9xp972z0097356h1rddal07%2522%252C%2522type%2522%253A%2522PROJECT_SETUP%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D)
 
 ---
 Documentation:
 
-![UML lab32](./public/assets/lab33UML.jpg)
+![UML lab34](./public/assets/lab34UML.jpg)
 
 ---
 
 ## Problem Domain
 
 * A Web Application for securely managing a To Do List
+
+---
+
+## Phase 4 - Requirements
+
+* In Phase 4, we will finalize the functionality of the application by connecting to live servers for login, authorization, and data access
+
+---
+Requirements:
+
+* Alter the Add, Toggle Complete, and Delete functions within your to do application to use your API instead of in memory state.
+  * Fetch the current list of items from the database on application start
+  * Whenever you add/update/delete an item, refresh the state so the user can instantly see the change
+    * Consider: Do you re-fetch from the server every time you make a change?
+      * If so, how?
+      * If not, how will you stay in sync?
+* Alter the Login Context to use the server to login users instead of our mock users list.
+  * Be sure to store the token in state as well as in a cookie so you can reference it later.
+
+### Rendering Phase 4 app results
+
+![Render Results Test](./public/assets/todoPhase3Render.jpg)
 
 ---
 
@@ -55,15 +77,15 @@ Enabled Logins:
     "password": "admin",
     },
     "Reader": {
-    "password": "reader",
+      "password": "reader",
     "capabilities": ['read'],
     },
     "Writer": {
-    "password": "writer",
+      "password": "writer",
     "capabilities": ['read', 'write'],
     },
     "Editor": {
-    "password": "editor",
+      "password": "editor",
     "capabilities": ['read', 'write', 'update', 'delete'],
     },
   }
@@ -163,5 +185,6 @@ Requirements:
 
 Previous UMLs
 
+![UML lab32](./public/assets/lab33UML.jpg)
 ![UML lab32](./public/assets/lab32UML.jpg)
 ![UML lab31](./public/assets/lab31UML.jpg)

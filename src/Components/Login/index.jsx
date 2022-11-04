@@ -41,6 +41,7 @@ function Login() {
             data-testid="password"
             placeholder="password"
             name="password"
+            type='password'
             onChange={handleChange}
           />
           <button type="submit">Login</button>
